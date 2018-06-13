@@ -4,9 +4,14 @@
     {
         private PartInvoiceController __Controller;
 
+        /// <summary>
+        /// Pass production implementation to PartInvoiceController constructor.
+        /// </summary>
         public PinnacleClient()
         {
-            __Controller = new PartInvoiceController();
+            DBConnection dBConnection = new DBConnection();
+            AvailabilityServiceClient availabilityServiceClient = new AvailabilityServiceClient();
+            __Controller = new PartInvoiceController(dBConnection, availabilityServiceClient);
         }
 
         public CreatePartInvoiceResult CreatePartInvoice(string stockCode, int quantity, string customerName)
